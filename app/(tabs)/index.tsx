@@ -4,7 +4,7 @@ const sugestao = {
   id: '0',
   titulo: 'Carros',
   imagem:
-    'https://static.wikia.nocookie.net/disney/images/7/79/Cars-disneyscreencaps.com-5057.jpg/revision/latest?cb=20150306225308',
+    'https://images4.alphacoders.com/216/216804.jpg',
 };
 
 const categorias = [
@@ -116,7 +116,7 @@ export default function App() {
       <Image
         source={{ uri: sugestao.imagem }}
         style={[styles.imagemInicio, { height: alturaInicio }]}
-        resizeMode="cover"
+
       />
 
         <View style={styles.inicioTexto}>
@@ -148,7 +148,7 @@ export default function App() {
 
 function Categoria({ item, width }: { item: any; width: number }) {
   const imagemLargura = width < 600 ? 150 : 180;
-  const imagemAltura = imagemLargura * 1.70;
+  const imagemAltura = imagemLargura * 1.50;
 
   return (
     <View style={styles.categoria}>

@@ -1,6 +1,11 @@
-import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Image, useWindowDimensions } from 'react-native';
 
 export default function App() {
+  const {width} = useWindowDimensions();
+  const {height} = useWindowDimensions
+  const alturaInicio = width < 1200 ? 820 : 1900;
+  const alturalargura = height < 900 ? 900 : 500;
+
   return (
     <ScrollView style={styles.container}>
 
@@ -12,8 +17,8 @@ export default function App() {
       {/* CAPA DO FILME */}
       <View style={styles.capa}>
         <Image
-        source={{ uri: 'https://br.web.img3.acsta.net/img/2e/a3/2ea3af46b803a6ca55f7a236b22b8246.jpg' }}
-        style={styles.imagem}
+        source={{ uri: 'https://bunny-wp-pullzone-jxfodxhhei.b-cdn.net/wp-content/uploads/2025/12/matt-damon-as-odysseus-in-the-odyssey.jpg' }}
+        style={[styles.header, {width: alturaInicio}, {height: alturalargura}]}
         />
       </View>
 
