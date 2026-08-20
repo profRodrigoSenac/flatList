@@ -1,10 +1,10 @@
-import { View, Text, StyleSheet, FlatList, Image } from 'react-native';
+import { View, Text, StyleSheet, FlatList, Image, useWindowDimensions } from 'react-native';
 
 const sugestao = {
   id: '0',
   titulo: 'Carros',
   imagem:
-    'https://tse4.mm.bing.net/th/id/OIP.zdveHEFRnxfxM9BU784xxgHaK4?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+    'https://static.wikia.nocookie.net/disney/images/7/79/Cars-disneyscreencaps.com-5057.jpg/revision/latest?cb=20150306225308',
 };
 
 const categorias = [
@@ -103,16 +103,21 @@ const categorias = [
 ];
 
 export default function App() {
+
+  const {width} = useWindowDimensions();
+  const alturaInicio = width < 600 ? 300 : 500;
+
   return (
     <View style={styles.app}>
 
       {/* FILME PRINCIPAL */}
-      <View style={styles.inicio}>
+      <View style={[styles.inicio, {height: alturaInicio}]}>
 
-        <Image
-          source={{ uri: sugestao.imagem }}
-          style={styles.imagemInicio}
-        />
+      <Image
+        source={{ uri: sugestao.imagem }}
+        style={[styles.imagemInicio, { height: alturaInicio }]}
+        resizeMode="cover"
+      />
 
         <View style={styles.inicioTexto}>
           <Text style={styles.inicioTitulo}>
@@ -132,14 +137,19 @@ export default function App() {
       <FlatList
         data={categorias}
         keyExtractor={(item) => item.id}
-        renderItem={renderCategoria}
+        renderItem={({ item }) => (
+        <Categoria item={item} width={width} />
+        )}
       />
 
     </View>
   );
 }
 
-function renderCategoria({ item }) {
+function Categoria({ item, width }: { item: any; width: number }) {
+  const imagemLargura = width < 600 ? 150 : 180;
+  const imagemAltura = imagemLargura * 1.70;
+
   return (
     <View style={styles.categoria}>
 
@@ -153,11 +163,17 @@ function renderCategoria({ item }) {
         horizontal
         showsHorizontalScrollIndicator={false}
         renderItem={({ item }) => (
-          <View style={styles.filme}>
+          <View style={[styles.filme, { width: imagemLargura }]}>
 
             <Image
               source={{ uri: item.imagem }}
-              style={styles.imagem}
+              style={[
+                styles.imagem,
+                {
+                  width: imagemLargura,
+                  height: imagemAltura,
+                },
+              ]}
             />
 
             <Text style={styles.titulo}>
@@ -179,13 +195,12 @@ const styles = StyleSheet.create({
   },
 
   inicio: {
-    height: 430,
     position: 'relative',
+    overflow: 'hidden',
   },
 
   imagemInicio: {
     width: '100%',
-    height: 430,
   },
 
   inicioTexto: {

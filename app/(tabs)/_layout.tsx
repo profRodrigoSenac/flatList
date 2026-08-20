@@ -52,10 +52,10 @@ export default function TabLayout() {
       <Tabs.Screen
         name="filme"
         options={{
-          title: "Início",
+          title: "Descrição",
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
-              name={focused ? "home" : "eye"}
+              name={focused ? "search" : "search-outline"}
               size={24}
               color={color}
             />
