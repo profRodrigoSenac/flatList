@@ -8,11 +8,10 @@ export default function TabLayout() {
       screenOptions={{
         headerShown: true,
         headerStyle: {
-          backgroundColor: "#6e0505ff",
+          backgroundColor: "rgb(133, 6, 6)",
           elevation: 0,
           shadowOpacity: 0,
-          borderBottomWidth: 1,
-          borderBottomColor: "#f0f0f0ff",
+          
         },
         headerTitleStyle: {
           fontWeight: "700",
@@ -22,10 +21,10 @@ export default function TabLayout() {
         tabBarActiveTintColor: "#007AFF",
         tabBarInactiveTintColor: "#8E8E93",
         tabBarStyle: {
-          backgroundColor: "#eff157ff",
+          backgroundColor: "rgb(133, 6, 6)",
           borderTopWidth: 1,
-          borderTopColor: "#F0F0F0",
-          height: Platform.OS === "ios" ? 88 : 64,
+         
+          height: Platform.OS === "ios" ? 20 : 64,
           paddingBottom: Platform.OS === "ios" ? 30 : 80,
           paddingTop: 10,
         },
@@ -48,6 +47,21 @@ export default function TabLayout() {
           ),
         }}
       />
+
+            <Tabs.Screen
+        name="filme"
+        options={{
+          title: "TITULO FILME",
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons
+              name={focused ? "list" : "list-outline"}
+              size={24}
+              color={color}
+            />
+          ),
+        }}
+      />
+      
       <Tabs.Screen
         name="explore"
         options={{
