@@ -1,10 +1,11 @@
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, Text, View, Pressable } from "react-native";
 import { Image } from "expo-image";
+import { useRouter } from "expo-router";
 
 type Filme = { id: string; titulo: string; cor: string; img?: string };
 type Categoria = { id: string; titulo: string; filmes: Filme[] };
 
-const categorias = [
+const categorias: Categoria[] = [
   {
     id: "1",
     titulo: "Em Alta",
@@ -23,7 +24,7 @@ const categorias = [
       { id: "2a", titulo: "John Wick 4", cor: "#DC2626", img: "https://i.pinimg.com/1200x/6e/50/a0/6e50a0bb3202e05cb9de75978b50e4a7.jpg" },
       { id: "2b", titulo: "Missão Impossível", cor: "#F97316", img: "https://i.pinimg.com/1200x/40/42/00/404200d6a15cb2b930e8e341da46243f.jpg" },
       { id: "2c", titulo: "Top Gun", cor: "#2563EB", img: "https://i.pinimg.com/736x/10/91/ef/1091ef30c9b2777e089032ae6fd1d3df.jpg" },
-      { id: "2d", titulo: "Mad Max", cor: "#EF4444", img: "https://i.pinimg.com/1200x/93/d5/20/93d52028d3fd46a8099dd509dcc8529f.jpg"},
+      { id: "2d", titulo: "Mad Max", cor: "#EF4444", img: "https://i.pinimg.com/1200x/93/d5/20/93d52028d3fd46a8099dd509dcc8529f.jpg" },
     ],
   },
   {
@@ -50,18 +51,24 @@ const categorias = [
     filmes: [
       { id: "5a", titulo: "Hereditary", cor: "#0F172A", img: "https://i.pinimg.com/736x/18/05/80/1805801348473dd829d17d6f76e98ade.jpg" },
       { id: "5b", titulo: "Midsommar", cor: "#9333EA", img: "https://i.pinimg.com/1200x/c0/75/e3/c075e3236ac661386c005e399e2252af.jpg" },
-      { id: "5c", titulo: "Get Out", cor: "#DC2626", img: "https://i.pinimg.com/736x/a1/3a/3c/a13a3c3d334f6511030c42f57cb571d8.jpg " },
+      { id: "5c", titulo: "Get Out", cor: "#DC2626", img: "https://i.pinimg.com/736x/a1/3a/3c/a13a3c3d334f6511030c42f57cb571d8.jpg" },
     ],
   },
 ];
 
-
 function FilmeCard({ item }: { item: Filme }) {
+  const router = useRouter();
+
   return (
-    <View style={[styles.filmeCard, { backgroundColor: item.cor }]}>
+    <Pressable
+      style={[styles.filmeCard, { backgroundColor: item.cor }]}
+      onPress={() => router.push({ pathname: "/filme", params: { id: item.id } })}
+    >
       <Text style={styles.filmeTitulo}>{item.titulo}</Text>
-        <Image source={{ uri: item.img }} style={styles.filmeImage} />
-    </View>
+      {item.img ? (
+        <Image source={{ uri: item.img }} style={styles.filmeImage} contentFit="cover" />
+      ) : null}
+    </Pressable>
   );
 }
 
@@ -69,12 +76,11 @@ function CategoriaRow({ item }: { item: Categoria }) {
   return (
     <View style={styles.categoriaContainer}>
       <Text style={styles.categoriaTitulo}>{item.titulo}</Text>
-     
       <FlatList
-        data={item.filmes}             
-        keyExtractor={(filme) => filme.id} 
-        renderItem={({ item: filme }) => <FilmeCard item={filme} />} 
-        horizontal={true}              
+        data={item.filmes}
+        keyExtractor={(filme) => filme.id}
+        renderItem={({ item: filme }) => <FilmeCard item={filme} />}
+        horizontal={true}
         showsHorizontalScrollIndicator={false}
       />
     </View>
@@ -86,18 +92,18 @@ export default function Netflix() {
     <View style={styles.container}>
       <View style={styles.header}>
         <Image
-          source={require("../../assets/images/netflixlogo.png")}
+          source={{ uri: "https://assets.nflxext.com/ffe/siteui/common/icons/netflix-m-icon.png" }}
           style={styles.logoImage}
           contentFit="contain"
         />
       </View>
-      
+
       <FlatList
-        data={categorias}             
-        keyExtractor={(cat) => cat.id} 
-        renderItem={({ item }) => <CategoriaRow item={item} />} 
-        showsVerticalScrollIndicator={false} 
-        contentContainerStyle={{ paddingBottom: 80 }}
+        data={categorias}
+        keyExtractor={(cat) => cat.id}
+        renderItem={({ item }) => <CategoriaRow item={item} />}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.listPadding}
       />
     </View>
   );
@@ -108,7 +114,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#0B1120",
   },
-
   header: {
     height: 80,
     paddingTop: 20,
@@ -145,11 +150,13 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 10,
     elevation: 6,
+    overflow: "hidden",
   },
   filmeTitulo: {
     color: "#F8FAFC",
     fontSize: 16,
     fontWeight: "700",
+    zIndex: 1,
   },
   filmeImage: {
     width: "100%",
@@ -160,5 +167,8 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     borderRadius: 18,
+  },
+  listPadding: {
+    paddingBottom: 80,
   },
 });
