@@ -101,7 +101,6 @@ const styles = StyleSheet.create({
   imagem: {
     width: 500,
     height: 500,
-
   },
 
   capaTitulo: {

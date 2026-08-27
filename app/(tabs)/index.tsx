@@ -1,4 +1,5 @@
-import { View, Text, StyleSheet, FlatList, Image, useWindowDimensions } from 'react-native';
+import { View, Text, StyleSheet, FlatList, Image, useWindowDimensions, } from 'react-native';
+import { Link } from 'expo-router';
 
 const sugestao = {
   id: '0',
@@ -112,24 +113,26 @@ export default function App() {
 
       {/* FILME PRINCIPAL */}
       <View style={[styles.inicio, {height: alturaInicio}]}>
+       <Link href={'/filme'}>
 
-      <Image
-        source={{ uri: sugestao.imagem }}
-        style={[styles.imagemInicio, { height: alturaInicio }]}
+          <Image
+            source={{ uri: sugestao.imagem }}
+            style={[styles.imagemInicio, { height: alturaInicio }]}
 
-      />
+          />
 
-        <View style={styles.inicioTexto}>
-          <Text style={styles.inicioTitulo}>
-            {sugestao.titulo}
-          </Text>
+            <View style={styles.inicioTexto}>
+              <Text style={styles.inicioTitulo}>
+                {sugestao.titulo}
+              </Text>
 
-          <Text style={styles.inicioDescricao}>
-            Um carro de corrida que sonha em se tornar o mais
-            rápido do mundo acaba descobrindo o verdadeiro
-            significado da amizade.
-          </Text>
-        </View>
+              <Text style={styles.inicioDescricao}>
+                Um carro de corrida que sonha em se tornar o mais
+                rápido do mundo acaba descobrindo o verdadeiro
+                significado da amizade.
+              </Text>
+            </View>
+       </Link>
 
       </View>
 
@@ -164,21 +167,21 @@ function Categoria({ item, width }: { item: any; width: number }) {
         showsHorizontalScrollIndicator={false}
         renderItem={({ item }) => (
           <View style={[styles.filme, { width: imagemLargura }]}>
-
-            <Image
-              source={{ uri: item.imagem }}
-              style={[
-                styles.imagem,
-                {
-                  width: imagemLargura,
-                  height: imagemAltura,
-                },
-              ]}
-            />
-
-            <Text style={styles.titulo}>
-              {item.titulo}
-            </Text>
+            <Link  href="/filme" >
+              <Image
+                source={{ uri: item.imagem }}
+                style={[
+                  styles.imagem,
+                  {
+                    width: imagemLargura,
+                    height: imagemAltura,
+                  },
+                ]}
+              />
+              <Text style={styles.titulo}>
+                {item.titulo}
+              </Text>
+            </Link>
 
           </View>
         )}
