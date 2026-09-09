@@ -11,7 +11,7 @@ export default function renderCategoria({ item }: { item: any }) {
         horizontal={true}
         // showsHorizontalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 40 }}
-        renderItem={CardFilme}
+        renderItem={({ item }) => <CardFilme item={item} />}
       />
     </View>
   );
