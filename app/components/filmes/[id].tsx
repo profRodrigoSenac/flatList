@@ -1,17 +1,28 @@
+import { useLocalSearchParams } from "expo-router";
+import CategoriasFilme from "../DadosFilme";
 import { Link } from 'expo-router';
-import { View, StyleSheet, Text, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
 
 
 export default function App() {
-    return (
+    const {id} = useLocalSearchParams();
 
+console.log('ID recebido', id)
+
+const categorias = CategoriasFilme();
+const filmeEncontrado = categorias
+.flatMap((categoria) => categoria.filmes)
+.find((f) => f.id === id);
+
+console.log('Filme encontrado:', filmeEncontrado);
+    return (
     <View style={styles.boxfilm}>
 
          <View style={styles.bigwach}>
 
             <View style={styles.boximgFilm}>
                 <Image
-                    source={{ uri: 'https://www.movietele.it/wp-content/uploads/2022/12/Oppenheimer-di-Christopher-Nolan-Poster-VOD.jpeg' }}
+                    source={{ uri: filmeEncontrado?.Imagem }}
                     style={styles.imgFilm}
                 >
                 </Image>
@@ -19,11 +30,13 @@ export default function App() {
         
 
             <View style={styles.watchfilm}>
-                <Text style={styles.titolofilm}>Oppenheimer</Text>
-                <Text style={styles.textfilm}>Lançamento: 2023    Duração de <Text style={styles.duration}>3h   </Text><Text style={styles.age}> 16 </Text></Text>
+                <Text style={styles.titolofilm}>{filmeEncontrado?.titulo}</Text>
+                <Text style={styles.textfilm}>Lançamento:  {filmeEncontrado?.ano} 
+                <Text style={styles.duration}>  {filmeEncontrado?.duracao}   </Text>
+                 <Text style={styles.age}>  {filmeEncontrado?.age} </Text></Text>
 
         <View style={styles.bots}>
-            <Link href={'/flat'}>
+            <Link href={'/(tabs)/flat'}>
                 <TouchableOpacity style={styles.startFilm}> Assistir </TouchableOpacity>
 
                 <TouchableOpacity style={styles.backsee}> + Lista de filmes </TouchableOpacity>
@@ -34,14 +47,7 @@ export default function App() {
             </View>
         </View>
         
-                <Text style={styles.descFilm}> <Text style={styles.sino}>Sinopse: </Text>
-                      O longa-metragem de 2023, dirigido por Christopher Nolan,
-                    é uma adaptação da biografia "American Prometheus", 
-                    escrita por Kai Bird e Martin J. Sherwin. 
-                    O filme foca na vida de J. Robert Oppenheimer,
-                    um físico teórico americano que é amplamente reconhecido como o
-                    "pai da bomba atômica".   
-                </Text>
+                <Text style={styles.descFilm}><Text style={styles.sino}>{filmeEncontrado?.sinopse}</Text> </Text>
 
              </View>
 
@@ -71,8 +77,7 @@ const styles = StyleSheet.create({
     },
 
     sino:{
-        fontSize: 25,
-        color: '#ffa332fa', 
+        fontSize: 22,
     },
 
     boximgFilm: {
@@ -92,15 +97,16 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 20,
         fontWeight: 'bold',
-        marginTop: '20%',
+        marginTop: '18%',
+        marginRight: '2%',
         alignSelf: 'center',
     },
 
     age:{
-        width: 30,
-        height: 25,
+        width: 25,
+        height: 20,
         backgroundColor: 'red',
-        borderBottomLeftRadius: 10
+        borderBottomLeftRadius: 10,
     },
 
     duration: {
@@ -143,6 +149,7 @@ const styles = StyleSheet.create({
         borderWidth: 3,
         borderColor: '#aab41ec5',
         marginLeft: 50,
+        marginRight: 20,
         fontSize: 18
     },
 
@@ -186,6 +193,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         marginTop: 30,
     },
+    
 
     textfav:{
         fontSize: 22,
@@ -195,3 +203,6 @@ const styles = StyleSheet.create({
     }
     
 });
+
+
+

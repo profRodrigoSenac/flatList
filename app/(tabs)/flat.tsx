@@ -1,6 +1,5 @@
-import { Link } from 'expo-router';
-import {View, StyleSheet, FlatList, Text, Image, TouchableOpacity} from 'react-native';
-import CategoriasFilme from '../components/CategoriasFilme';
+import {View, StyleSheet, FlatList} from 'react-native';
+import CategoriasFilme from '../components/DadosFilme';
 import renderCategoria from '../components/RendeICat';
 
 

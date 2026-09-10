@@ -1,8 +1,10 @@
 import{View, Image, FlatList, StyleSheet, Text, TouchableOpacity} from 'react-native'
-import { Link } from 'expo-router';
+import { Link, useLocalSearchParams } from 'expo-router';
 
 
 export default function renderCategoria({ item } : {item:any}) {
+  const {id} = useLocalSearchParams ();
+
   return (
     <View style={styles.categoria}>
       {item.titulo}
@@ -11,7 +13,7 @@ export default function renderCategoria({ item } : {item:any}) {
       keyExtractor={filme => filme.id}
       horizontal={true}
       renderItem={({ item }) => (
-        <Link href='/filme'>
+        <Link href={`/components/filmes/${item.id}`}>
        <TouchableOpacity style={styles.bott}>     
           <View>
             <Image  
@@ -19,12 +21,11 @@ export default function renderCategoria({ item } : {item:any}) {
             style={styles.filmage}
             />
               <Text style={styles.filmeTitulo}>{item.titulo}</Text>
-           </View>
+          </View>
            </TouchableOpacity>
         </Link>
       )}
-      />
-    
+      />     
     </View>
     )
 }

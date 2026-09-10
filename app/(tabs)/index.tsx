@@ -1,12 +1,12 @@
-import {View, StyleSheet, FlatList, Text} from 'react-native';
-import CategoriasFilme from '../components/CategoriasFilme';
+import {View, StyleSheet, FlatList} from 'react-native';
+import CategoriasFilme from '../components/DadosFilme';
+import renderCategoria from '../components/RendeICat';
 
 const categorias=CategoriasFilme();
-
+console.log(categorias);
 
 export default function App() {
     return (
- 
       <View style={styles.backcolor}>
         <FlatList
           data={categorias}
@@ -14,71 +14,56 @@ export default function App() {
           renderItem={renderCategoria }
         />
       </View>
- 
+
     );
 }
- 
-function renderCategoria({ item } : {item:any}) {
-  return (
-    <View style={styles.categoria}>
-      {item.titulo}
-      <FlatList
-      data={item.filmes}
-      keyExtractor={filme => filme.id}
-      horizontal={true}
-      // showsHorizontalScrollIndicator = {false}
-      // contentContainerStyle={{ paddingBottom: 40 }}
-      renderItem={({ item }) => (
-        <View style={[styles.filme, { backgroundColor: item.cor }]}>
-              <Text style={styles.filmeTitulo}>{item.titulo}</Text>
-           </View>
-      )}
-           
-      />
-   
-    </View>
-       
-    )
-}
- 
+
 const styles = StyleSheet.create({
- 
+
     backcolor:{
-    backgroundColor: '#010101',
+    backgroundColor: '#000000',
     flex: 1,
   },
- 
+
   cont1:{
     fontSize: 30,
     color:'#ffff',
     margin: 20,
   },
- 
+
+  bott:{
+    height: '100%',
+    padding: 5,
+    marginRight: 25,
+    borderRadius: 20, 
+    marginTop: 4
+  },
+
   categoria:{
     color:'#ffff',
     fontSize: 24,
     fontFamily:'Arial',
-    height: 300,
+    height: 335,
     padding: 15,
-    borderRadius: 12,
-    backgroundColor: '#392525',
-   
-  },
-
-  filme:{
-    width: 150,
-    height: 200,
-    backgroundColor: '#000',
     margin: 10,
-    borderRadius: 10,
-    justifyContent: 'flex-end',
-    padding: 5,
+    marginBottom: 20,
+    borderRadius: 12,
+    backgroundColor: '#47221e',
+    
   },
   
+  filmage:{
+    width: 150, 
+    height: '100%',
+    backgroundColor: '#000',
+    borderRadius: 15,
+    justifyContent: 'flex-end',
+  },
+
   filmeTitulo:{
     color: '#fff',
     fontSize: 20,
+    marginLeft: 5
   }
        
 });
- 
