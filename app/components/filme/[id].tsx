@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams } from 'expo-router';
+import DadosDosFilmes from '../DadosDosFilmes';
 
 export interface FilmeProps {
   id?: string;
@@ -44,13 +45,20 @@ const filmeExemploPadrao: FilmeProps = {
 export default function Filme(props?: FilmeProps) {
   // Pega parâmetros da navegação se houver, ou usa as props diretas, ou cai no exemplo padrão
   const params = useLocalSearchParams<{ id: string }>();
-  const id = params.id;
+  const id = props?.id || params.id;
 
   console.log('ID recebido:', id);
 
+  const categorias = DadosDosFilmes();
+  const filmeEncontrado = categorias
+    .flatMap((categoria) => categoria.filmes)
+    .find((f) => f.id === id);
+
+  console.log('Filme encontrado:', filmeEncontrado);
+
   const filme: FilmeProps = {
-    id: props?.id || params.id || filmeExemploPadrao.id,
-    titulo: props?.titulo || params.titulo || filmeExemploPadrao.titulo,
+    id: filmeEncontrado?.id || id || filmeExemploPadrao.id,
+    titulo: filmeEncontrado?.titulo || props?.titulo || params.titulo || filmeExemploPadrao.titulo,
     subtitulo: props?.subtitulo || params.subtitulo || filmeExemploPadrao.subtitulo,
     ano: props?.ano || params.ano || filmeExemploPadrao.ano,
     duracao: props?.duracao || params.duracao || filmeExemploPadrao.duracao,
@@ -60,7 +68,7 @@ export default function Filme(props?: FilmeProps) {
     genero: props?.genero || params.genero || filmeExemploPadrao.genero,
     sinopse: props?.sinopse || params.sinopse || filmeExemploPadrao.sinopse,
     elenco: props?.elenco || params.elenco || filmeExemploPadrao.elenco,
-    imagem: props?.imagem || params.imagem || filmeExemploPadrao.imagem,
+    imagem: filmeEncontrado?.imagem || props?.imagem || params.imagem || filmeExemploPadrao.imagem,
   };
 
   return (
