@@ -42,10 +42,8 @@ const filmeExemploPadrao: FilmeProps = {
     'https://mir-s3-cdn-cf.behance.net/project_modules/1400/5c3c44212930411.673d9fef7aad7.jpg',
 };
 
-export default function Filme(props?: FilmeProps) {
-  // Pega parâmetros da navegação se houver, ou usa as props diretas, ou cai no exemplo padrão
-  const params = useLocalSearchParams<{ id: string }>();
-  const id = props?.id || params.id;
+export default function Filme() {
+  const { id } = useLocalSearchParams();
 
   console.log('ID recebido:', id);
 
@@ -57,18 +55,8 @@ export default function Filme(props?: FilmeProps) {
   console.log('Filme encontrado:', filmeEncontrado);
 
   const filme: FilmeProps = {
-    id: filmeEncontrado?.id || id || filmeExemploPadrao.id,
-    titulo: filmeEncontrado?.titulo || props?.titulo || params.titulo || filmeExemploPadrao.titulo,
-    subtitulo: props?.subtitulo || params.subtitulo || filmeExemploPadrao.subtitulo,
-    ano: props?.ano || params.ano || filmeExemploPadrao.ano,
-    duracao: props?.duracao || params.duracao || filmeExemploPadrao.duracao,
-    classificacao:
-      props?.classificacao || params.classificacao || filmeExemploPadrao.classificacao,
-    nota: props?.nota || params.nota || filmeExemploPadrao.nota,
-    genero: props?.genero || params.genero || filmeExemploPadrao.genero,
-    sinopse: props?.sinopse || params.sinopse || filmeExemploPadrao.sinopse,
-    elenco: props?.elenco || params.elenco || filmeExemploPadrao.elenco,
-    imagem: filmeEncontrado?.imagem || props?.imagem || params.imagem || filmeExemploPadrao.imagem,
+    ...filmeExemploPadrao,
+    ...filmeEncontrado,
   };
 
   return (
