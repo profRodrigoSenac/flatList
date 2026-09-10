@@ -10,6 +10,8 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams } from 'expo-router';
 
+
+
 export interface FilmeProps {
   id?: string;
   titulo?: string;
