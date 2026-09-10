@@ -1,8 +1,10 @@
 import { View, Text, StyleSheet, ScrollView, Image, useWindowDimensions } from 'react-native';
+import { useLocalSearchParams } from 'expo-router';
 
 export default function App() {
+  const { id } = useLocalSearchParams();
   const {width} = useWindowDimensions();
-  const {height} = useWindowDimensions
+  const {height} = useWindowDimensions();
   const alturaInicio = width < 1200 ? 820 : 1900;
   const alturalargura = height < 900 ? 900 : 500;
 

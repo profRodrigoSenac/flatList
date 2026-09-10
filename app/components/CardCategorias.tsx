@@ -19,7 +19,7 @@ export default function renderCategoria({ item, width }: { item: any; width: num
               showsHorizontalScrollIndicator={false}
               renderItem={({ item }) => (
                 <View style={[styles.filme, { width: imagemLargura }]}>
-                  <Link  href="/filme" >
+                  <Link  href="/componentes/filme/${item.id}" >
                     <Image
                       source={{ uri: item.imagem }}
                       style={[
