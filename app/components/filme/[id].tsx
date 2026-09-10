@@ -10,7 +10,9 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams } from 'expo-router';
 
+const id = useLocalSearchParams()
 
+console.log(id)
 
 export interface FilmeProps {
   id?: string;
