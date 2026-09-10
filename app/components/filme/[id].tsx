@@ -10,10 +10,6 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams } from 'expo-router';
 
-const id = useLocalSearchParams()
-
-console.log(id)
-
 export interface FilmeProps {
   id?: string;
   titulo?: string;
@@ -47,7 +43,10 @@ const filmeExemploPadrao: FilmeProps = {
 
 export default function Filme(props?: FilmeProps) {
   // Pega parâmetros da navegação se houver, ou usa as props diretas, ou cai no exemplo padrão
-  const params = useLocalSearchParams<Record<string, string>>();
+  const params = useLocalSearchParams<{ id: string }>();
+  const id = params.id;
+
+  console.log('ID recebido:', id);
 
   const filme: FilmeProps = {
     id: props?.id || params.id || filmeExemploPadrao.id,
