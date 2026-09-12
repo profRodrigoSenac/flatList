@@ -11,36 +11,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams } from 'expo-router';
 import DadosDosFilmes from '../DadosDosFilmes';
 
-export interface FilmeProps {
-  id?: string;
-  titulo?: string;
-  subtitulo?: string;
-  ano?: string;
-  duracao?: string;
-  classificacao?: string;
-  nota?: string;
-  genero?: string;
-  sinopse?: string;
-  elenco?: string;
-  imagem?: string;
-}
 
 // Dados de exemplo padrão (caso ainda não venham por props ou rota)
-const filmeExemploPadrao: FilmeProps = {
-  id: '1a',
-  titulo: 'Oppenheimer',
-  subtitulo: 'O mundo mudará para sempre',
-  ano: '2023',
-  duracao: '3h 00m',
-  classificacao: '16+',
-  nota: '8.9',
-  genero: 'Drama • Biografia • História',
-  sinopse:
-    'A história do físico americano J. Robert Oppenheimer, seu papel fundamental no Projeto Manhattan e o desenvolvimento da bomba atômica durante a Segunda Guerra Mundial.',
-  elenco: 'Cillian Murphy, Emily Blunt, Matt Damon, Robert Downey Jr.',
-  imagem:
-    'https://mir-s3-cdn-cf.behance.net/project_modules/1400/5c3c44212930411.673d9fef7aad7.jpg',
-};
 
 export default function Filme() {
   const { id } = useLocalSearchParams();
@@ -54,10 +26,7 @@ export default function Filme() {
 
   console.log('Filme encontrado:', filmeEncontrado);
 
-  const filme: FilmeProps = {
-    ...filmeExemploPadrao,
-    ...filmeEncontrado,
-  };
+  const filme=filmeEncontrado;
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.scrollContent}>
