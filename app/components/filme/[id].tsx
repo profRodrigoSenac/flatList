@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { useLocalSearchParams } from 'expo-router';
+import { useLocalSearchParams, Stack, router } from 'expo-router';
 import DadosDosFilmes from '../DadosDosFilmes';
 
 
@@ -26,75 +26,106 @@ export default function Filme() {
 
   console.log('Filme encontrado:', filmeEncontrado);
 
-  const filme=filmeEncontrado;
+  const filme = filmeEncontrado;
+
+  if (!filme) {
+    return (
+      <>
+        <Stack.Screen
+          options={{
+            title: 'Filme não encontrado',
+            headerStyle: { backgroundColor: '#0F172A' },
+            headerTintColor: '#FFFFFF',
+          }}
+        />
+        <View style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}>
+          <Text style={{ color: '#CBD5E1', fontSize: 16 }}>Filme não encontrado.</Text>
+          <TouchableOpacity style={{ backgroundColor: '#1E293B', padding: 12, borderRadius: 10, alignItems: 'center', margin: 20 }} onPress={() => router.push("/")}>
+            <Text style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: 15 }}>Voltar</Text>
+          </TouchableOpacity>
+        </View>
+
+
+      </>
+    );
+  }
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.scrollContent}>
-      <View style={styles.innerContainer}>
-        {/* Banner / Poster do Filme */}
-        <View style={styles.posterContainer}>
-          <Image
-            source={{ uri: filme.imagem }}
-            style={styles.poster}
-            resizeMode="cover"
-          />
-          <View style={styles.overlay} />
+    <>
+      <Stack.Screen
+        options={{
+          title: filme.titulo,
+          headerStyle: { backgroundColor: "rgb(93, 0, 7)" },
+          headerTintColor: '#FFFFFF',
+        }}
+      />
+      <ScrollView style={styles.container} contentContainerStyle={styles.scrollContent}>
+        <View style={styles.innerContainer}>
+          {/* Banner / Poster do Filme */}
+          <View style={styles.posterContainer}>
+            <Image
+              source={{ uri: filme.imagem }}
+              style={styles.poster}
+              resizeMode="center"
+            />
+            <View style={styles.overlay} />
+          </View>
+
+          {/* Detalhes Principais */}
+          <View style={styles.detalhesContainer}>
+            <Text style={styles.titulo}>{filme.titulo}</Text>
+            {filme.subtitulo ? (
+              <Text style={styles.subtitulo}>{filme.subtitulo}</Text>
+            ) : null}
+
+            {/* Tags / Badges com Ano, Duração, Classificação e Nota */}
+            <View style={styles.tagsContainer}>
+              <View style={styles.badge}>
+                <Text style={styles.badgeTexto}>{filme.ano}</Text>
+              </View>
+              <View style={styles.badge}>
+                <Text style={styles.badgeTexto}>{filme.duracao}</Text>
+              </View>
+              <View style={[styles.badge, styles.badgeClassificacao]}>
+                <Text style={styles.badgeTexto}>{filme.classificacao}</Text>
+              </View>
+              <View style={styles.ratingContainer}>
+                <Ionicons name="star" size={16} color="#FFD700" />
+                <Text style={styles.ratingTexto}>{filme.nota}</Text>
+              </View>
+            </View>
+
+            {/* Gênero */}
+            <Text style={styles.genero}>{filme.genero}</Text>
+
+            {/* Botões de Ação */}
+            <View style={styles.botoesContainer}>
+              <TouchableOpacity style={styles.botaoAssistir} activeOpacity={0.8}>
+                <Ionicons name="play" size={20} color="#000" />
+                <Text style={styles.textoBotaoAssistir}>Assistir Trailer</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.botaoMinhaLista} activeOpacity={0.8}>
+                <Ionicons name="add" size={20} color="#FFF" />
+                <Text style={styles.textoBotaoMinhaLista}>Minha Lista</Text>
+              </TouchableOpacity>
+            </View>
+
+            {/* Seção Sinopse */}
+            <View style={styles.secao}>
+              <Text style={styles.secaoTitulo}>Sinopse</Text>
+              <Text style={styles.secaoConteudo}>{filme.sinopse}</Text>
+            </View>
+
+            {/* Seção Elenco */}
+            <View style={styles.secao}>
+              <Text style={styles.secaoTitulo}>Elenco Principal</Text>
+              <Text style={styles.secaoConteudo}>{filme.elenco}</Text>
+            </View>
+          </View>
         </View>
-
-        {/* Detalhes Principais */}
-        <View style={styles.detalhesContainer}>
-          <Text style={styles.titulo}>{filme.titulo}</Text>
-          {filme.subtitulo ? (
-            <Text style={styles.subtitulo}>{filme.subtitulo}</Text>
-          ) : null}
-
-          {/* Tags / Badges com Ano, Duração, Classificação e Nota */}
-          <View style={styles.tagsContainer}>
-            <View style={styles.badge}>
-              <Text style={styles.badgeTexto}>{filme.ano}</Text>
-            </View>
-            <View style={styles.badge}>
-              <Text style={styles.badgeTexto}>{filme.duracao}</Text>
-            </View>
-            <View style={[styles.badge, styles.badgeClassificacao]}>
-              <Text style={styles.badgeTexto}>{filme.classificacao}</Text>
-            </View>
-            <View style={styles.ratingContainer}>
-              <Ionicons name="star" size={16} color="#FFD700" />
-              <Text style={styles.ratingTexto}>{filme.nota}</Text>
-            </View>
-          </View>
-
-          {/* Gênero */}
-          <Text style={styles.genero}>{filme.genero}</Text>
-
-          {/* Botões de Ação */}
-          <View style={styles.botoesContainer}>
-            <TouchableOpacity style={styles.botaoAssistir} activeOpacity={0.8}>
-              <Ionicons name="play" size={20} color="#000" />
-              <Text style={styles.textoBotaoAssistir}>Assistir</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.botaoMinhaLista} activeOpacity={0.8}>
-              <Ionicons name="add" size={20} color="#FFF" />
-              <Text style={styles.textoBotaoMinhaLista}>Minha Lista</Text>
-            </TouchableOpacity>
-          </View>
-
-          {/* Seção Sinopse */}
-          <View style={styles.secao}>
-            <Text style={styles.secaoTitulo}>Sinopse</Text>
-            <Text style={styles.secaoConteudo}>{filme.sinopse}</Text>
-          </View>
-
-          {/* Seção Elenco */}
-          <View style={styles.secao}>
-            <Text style={styles.secaoTitulo}>Elenco Principal</Text>
-            <Text style={styles.secaoConteudo}>{filme.elenco}</Text>
-          </View>
-        </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </>
   );
 }
 

@@ -14,7 +14,7 @@ export default function DadosDosFilmes() {
           nota: "8.9",
           genero: "Drama • Biografia • História",
           elenco: "Cillian Murphy, Emily Blunt, Matt Damon, Robert Downey Jr.",
-          cor: "#1a1a2e",
+          cor: "#f2a27fff",
           imagem: "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
           sinopse: "A história do físico americano J. Robert Oppenheimer, seu papel fundamental no Projeto Manhattan e o desenvolvimento da bomba atômica durante a Segunda Guerra Mundial."
         },
@@ -28,7 +28,7 @@ export default function DadosDosFilmes() {
           nota: "8.6",
           genero: "Ficção Científica • Aventura • Ação",
           elenco: "Timothée Chalamet, Zendaya, Rebecca Ferguson, Javier Bardem",
-          cor: "#16213e",
+          cor: "#ff7b00ff",
           imagem: "https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
           sinopse: "Paul Atreides se une a Chani e aos Fremen enquanto busca vingança contra os conspiradores que destruíram sua família, diante de uma escolha entre o amor de sua vida e o destino do universo."
         },
@@ -42,7 +42,7 @@ export default function DadosDosFilmes() {
           nota: "7.0",
           genero: "Comédia • Fantasia • Aventura",
           elenco: "Margot Robbie, Ryan Gosling, America Ferrera, Will Ferrell",
-          cor: "#0f3460",
+          cor: "#ff00aaff",
           imagem: "https://image.tmdb.org/t/p/w500/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg",
           sinopse: "Depois de ser expulsa da Barbieland por não ser uma boneca perfeita, Barbie parte para o mundo humano acompanhada de Ken em busca da verdadeira felicidade e autodescoberta."
         },
@@ -91,7 +91,7 @@ export default function DadosDosFilmes() {
           genero: "Ação • Suspense • Crime",
           elenco: "Keanu Reeves, Donnie Yen, Bill Skarsgård, Laurence Fishburne",
           cor: "#1b1b2f",
-          imagem: "https://image.tmdb.org/t/p/w500/vZloFAK7NDTugw9FujnztiikXRb.jpg",
+          imagem: "https://image.tmdb.org/t/p/w500/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg",
           sinopse: "John Wick descobre um caminho para derrotar a Alta Cúpula. Mas antes que possa conquistar sua liberdade, Wick deve enfrentar um novo inimigo com poderosas alianças em todo o mundo."
         },
         {
@@ -153,7 +153,7 @@ export default function DadosDosFilmes() {
           genero: "Comédia",
           elenco: "Jonah Hill, Michael Cera, Christopher Mintz-Plasse, Bill Hader",
           cor: "#2d132c",
-          imagem: "https://image.tmdb.org/t/p/w500/ek8e8txUyUwd2BNqj6lFEerJqEB.jpg",
+          imagem: "https://image.tmdb.org/t/p/w500/ek8e8txUyUwd2BNqj6lFEerJfbq.jpg",
           sinopse: "Dois amigos adolescentes co-dependentes enfrentam a ansiedade da separação enquanto tentam comprar bebidas alcoólicas para uma festa do colégio e conquistar suas paixões."
         },
         {
@@ -201,7 +201,7 @@ export default function DadosDosFilmes() {
           genero: "Documentário • Aventura • Esporte",
           elenco: "Alex Honnold, Tommy Caldwell, Jimmy Chin, Sanni McCandless",
           cor: "#0d0d0d",
-          imagem: "https://image.tmdb.org/t/p/w500/v47i8Q2vYcrg322tAqq5p1T178o.jpg",
+          imagem: "https://image.tmdb.org/t/p/w500/v4QfYZMACODlWul9doN9RxE99ag.jpg",
           sinopse: "Acompanhe Alex Honnold enquanto ele tenta se tornar a primeira pessoa a escalar em estilo solo livre os 900 metros do paredão de granito El Capitan no Parque Nacional de Yosemite."
         },
         {
@@ -215,7 +215,7 @@ export default function DadosDosFilmes() {
           genero: "Documentário • Drama",
           elenco: "Tristan Harris, Jeff Seibert, Bailey Richardson, Joe Toscano",
           cor: "#001011",
-          imagem: "https://image.tmdb.org/t/p/w500/j57lKiqQ0P26914WpZcqyPecrhu.jpg",
+          imagem: "https://image.tmdb.org/t/p/w500/jcaM6V2tCtu6iMHDsGLBUbaYgYp.jpg",
           sinopse: "Especialistas em tecnologia e ativistas exploram o perigoso impacto humano e psicológico das redes sociais e como as plataformas digitais manipulam o comportamento dos usuários."
         },
         {
@@ -229,7 +229,7 @@ export default function DadosDosFilmes() {
           genero: "Documentário",
           elenco: "Craig Foster, Tom Foster",
           cor: "#002b36",
-          imagem: "https://image.tmdb.org/t/p/w500/n6h56w2yDk9sTee2Mv03f295tqZ.jpg",
+          imagem: "https://image.tmdb.org/t/p/w500/hvTVZb7hBC8tZAGoEhH5eiMJu2B.jpg",
           sinopse: "Um cineasta forja uma amizade incomum com um polvo que vive em uma floresta de algas sul-africana, aprendendo lições valiosas sobre os mistérios e a fragilidade da vida."
         },
       ],
@@ -249,7 +249,7 @@ export default function DadosDosFilmes() {
           genero: "Terror • Mistério • Drama",
           elenco: "Toni Collette, Alex Wolff, Milly Shapiro, Gabriel Byrne",
           cor: "#200122",
-          imagem: "https://image.tmdb.org/t/p/w500/p9fmuz2Oj3HtEJHG46qUa4q5zmj.jpg",
+          imagem: "https://image.tmdb.org/t/p/w500/4GFPuL14eXi66V96xBWY73Y9PfR.jpg",
           sinopse: "Após a morte da matriarca da família Graham, sua filha e netos começam a desvendar segredos crípticos e cada vez mais aterrorizantes sobre sua ancestralidade."
         },
         {
@@ -263,7 +263,7 @@ export default function DadosDosFilmes() {
           genero: "Terror • Drama • Mistério",
           elenco: "Florence Pugh, Jack Reynor, Vilhelm Blomgren, William Jackson Harper",
           cor: "#190a05",
-          imagem: "https://image.tmdb.org/t/p/w500/7LEI8ulraIa4qQGFBvmVT0EGHKP.jpg",
+          imagem: "https://image.tmdb.org/t/p/w500/7LEI8ulZzO5gy9Ww2NVCrKmHeDZ.jpg",
           sinopse: "Um casal viaja para a Suécia para visitar o lendário festival rural de solstício de verão de um amigo, mas o retiro idílico se transforma rapidamente em uma competição violenta e bizarra."
         },
         {
