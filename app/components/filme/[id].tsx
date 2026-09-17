@@ -1,12 +1,27 @@
 import { View, Text, StyleSheet, ScrollView, Image, useWindowDimensions } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
+import DadosdoFilme from "../DadosdoFilme";
 
 export default function App() {
-  const { id } = useLocalSearchParams();
+  const { id } = useLocalSearchParams<{ id: string }>();
   const {width} = useWindowDimensions();
   const {height} = useWindowDimensions();
   const alturaInicio = width < 1200 ? 820 : 1900;
   const alturalargura = height < 900 ? 900 : 500;
+
+  const categorias = DadosdoFilme();
+  const filme = categorias
+    .flatMap((categoria) => categoria.filmes)
+    .find((filme) => filme.id === id);
+
+  if (!filme) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.titulo}>Filme não encontrado</Text>
+      </View>
+    );
+  }
+
 
   return (
     <ScrollView style={styles.container}>
@@ -19,7 +34,7 @@ export default function App() {
       {/* CAPA DO FILME */}
       <View style={styles.capa}>
         <Image
-        source={{ uri: 'https://bunny-wp-pullzone-jxfodxhhei.b-cdn.net/wp-content/uploads/2025/12/matt-damon-as-odysseus-in-the-odyssey.jpg' }}
+        source={{ uri: filme.imagem }}
         style={[styles.header, {width: alturaInicio}, {height: alturalargura}]}
         />
       </View>
@@ -28,7 +43,7 @@ export default function App() {
       <View style={styles.informacoes}>
 
         <Text style={styles.titulo}>
-          A Odisseia
+          {filme.titulo}
         </Text>
 
         <Text style={styles.dados}>

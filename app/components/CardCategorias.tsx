@@ -1,5 +1,5 @@
 import {View, Image, FlatList, StyleSheet, Text} from "react-native"
-import { Link } from "expo-router";
+import { Link, useLocalSearchParams } from "expo-router";
 
 export default function renderCategoria({ item, width }: { item: any; width: number }){
     const imagemLargura = width < 600 ? 150 : 180;
@@ -19,7 +19,7 @@ export default function renderCategoria({ item, width }: { item: any; width: num
               showsHorizontalScrollIndicator={false}
               renderItem={({ item }) => (
                 <View style={[styles.filme, { width: imagemLargura }]}>
-                  <Link  href="/componentes/filme/${item.id}" >
+                  <Link href={`/components/filme/${item.id}`}>
                     <Image
                       source={{ uri: item.imagem }}
                       style={[
