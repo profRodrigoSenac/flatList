@@ -1,7 +1,7 @@
 import { useLocalSearchParams } from "expo-router";
 import CategoriasFilme from "../DadosFilme";
-import { Link } from 'expo-router';
-import { View, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
+import { Link, Stack } from 'expo-router';
+import { View, StyleSheet, Text, TouchableOpacity, Image, TextInput } from 'react-native';
 
 
 export default function App() {
@@ -9,15 +9,23 @@ export default function App() {
 
 console.log('ID recebido', id)
 
-const categorias = CategoriasFilme();
-const filmeEncontrado = categorias
-.flatMap((categoria) => categoria.filmes)
-.find((f) => f.id === id);
+    const categorias = CategoriasFilme();
+    const filmeEncontrado = categorias
+    .flatMap((categoria) => categoria.filmes)
+    .find((f) => f.id === id);
 
 console.log('Filme encontrado:', filmeEncontrado);
     return (
+
     <View style={styles.boxfilm}>
 
+        <Stack.Screen
+        options={{
+            title: filmeEncontrado.titulo,
+            headerStyle: {backgroundColor: 'rgb(25, 21, 21)'},
+            headerTintColor: '#FAFAFA',
+            }}
+            />
          <View style={styles.bigwach}>
 
             <View style={styles.boximgFilm}>
@@ -33,7 +41,17 @@ console.log('Filme encontrado:', filmeEncontrado);
                 <Text style={styles.titolofilm}>{filmeEncontrado?.titulo}</Text>
                 <Text style={styles.textfilm}>Lançamento:  {filmeEncontrado?.ano} 
                 <Text style={styles.duration}>  {filmeEncontrado?.duracao}   </Text>
-                 <Text style={styles.age}>  {filmeEncontrado?.age} </Text></Text>
+                <Text style={styles.age}>  {filmeEncontrado?.age} </Text></Text>
+
+
+
+                 <TextInput style={styles.busca}
+                     placeholder='Busca...'
+                />
+
+                <TouchableOpacity style={styles.found}> OK </TouchableOpacity>
+            
+                
 
         <View style={styles.bots}>
             <Link href={'/(tabs)/flat'}>
@@ -53,11 +71,40 @@ console.log('Filme encontrado:', filmeEncontrado);
 
         </View>
 
+   
+
     </View>
+
     )
 }
 
 const styles = StyleSheet.create({
+
+    busca:{
+        width: '50%',
+        height: '4.5%',
+        backgroundColor: '#FAFA',
+        marginTop: '5%',
+        marginLeft: '10%',
+        borderRadius: '7%',
+        borderWidth: 3,
+        borderColor: '#FAFAFAFA',
+        fontSize: 20,
+        alignSelf: 'auto',
+        display: 'flex'
+    },
+
+    found:{
+        width: '10%',
+        height: '3%',
+        backgroundColor: 'red',
+        borderRadius: '7%',
+        borderWidth: 3,
+        borderColor: '#FAFAFAFA',
+        fontSize: 20,
+        textAlign: 'center',
+        justifyContent: 'center',
+        },
 
     boxfilm: {
         backgroundColor: '#2f3e3a',
@@ -87,7 +134,7 @@ const styles = StyleSheet.create({
     },
 
     imgFilm: {
-        marginTop: '5%',
+        marginTop: '15%',
         width: '100%',
         height: '90%',
         borderRadius: 20,
@@ -115,6 +162,7 @@ const styles = StyleSheet.create({
     },
 
     titolofilm: {
+        maxWidth: '60%',
         color: 'white',
         textDecorationLine: 'underline',
         textDecorationColor: '#ff2020a1',
@@ -164,7 +212,6 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         borderWidth: 3,
         borderColor: '#1e71b4',
-        marginLeft: 26,
         fontSize: 18,
 
     },

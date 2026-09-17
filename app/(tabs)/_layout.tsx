@@ -1,6 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
-import { Platform } from "react-native";
+import { Platform, TextInput } from "react-native";
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 export default function TabLayout() {
   return (
@@ -35,6 +36,14 @@ export default function TabLayout() {
         },
       }}
     >
+
+      <View style={styles.input}>
+      <TextInput
+      placeholder="Buscar..."
+      >
+      </TextInput>
+      </View>
+
       <Tabs.Screen
         name="index"
         options={{
@@ -49,9 +58,9 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="input"
         options={{
-          title: "Explorar",
+          title: "inputBusca",
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
               name={focused ? "search" : "search-outline"}
@@ -143,3 +152,13 @@ export default function TabLayout() {
     </Tabs>
   );
 }
+
+const styles = StyleSheet.create({
+        
+  input: {
+    backgroundColor: 'white',
+    width: '10%',
+    height: 'auto'
+  }
+
+})

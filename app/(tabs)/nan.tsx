@@ -47,7 +47,6 @@ const styles = StyleSheet.create({
     boxfilm: {
         backgroundColor: '#2f3e3a',
         flex: 1,
-        flexDirection: 'row'
     },
 
     bigwach:{

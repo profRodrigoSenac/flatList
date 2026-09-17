@@ -12,7 +12,7 @@ export default function CategoriasFilme() {
           duracao: "3h 00min",
           cor: "#1a1a2e",
           Imagem:
-            "https://assets-prd.ignimgs.com/2022/07/21/oppenheimer-poster-1658411601593.jpeg",
+            "https://www.movietele.it/wp-content/uploads/2022/12/Oppenheimer-di-Christopher-Nolan-Poster-VOD.jpeg' }}",
           sinopse:
             "Durante a Segunda Guerra Mundial, o físico J. Robert Oppenheimer lidera o Projeto Manhattan, responsável pelo desenvolvimento da primeira bomba atômica. O filme acompanha sua trajetória científica, suas decisões e as consequências de sua criação."
         },
