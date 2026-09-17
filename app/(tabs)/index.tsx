@@ -1,7 +1,8 @@
-import { View, Text, StyleSheet, FlatList, Image, useWindowDimensions, } from 'react-native';
+import { View, Text, StyleSheet, FlatList, Image, useWindowDimensions, TextInput } from 'react-native';
 import { Link } from 'expo-router';
 import DadosdoFilme from '../components/DadosdoFilme';
 import renderCategoria from '../components/CardCategorias'
+
 
 const categorias=DadosdoFilme();
 
@@ -19,8 +20,14 @@ export default function App() {
   const alturaInicio = width < 600 ? 300 : 500;
 
   return (
-    
+
     <View style={styles.app}>
+
+        <TextInput
+        placeholder="Buscar filmes...🔍︎"
+        style={styles.busca}
+
+      />
 
       {/* FILME PRINCIPAL */}
       <View style={[styles.inicio, {height: alturaInicio}]}>
@@ -48,7 +55,6 @@ export default function App() {
       </View>
 
       {/* CATEGORIAS */}
-      
 
       <FlatList
         data={categorias}
@@ -93,6 +99,15 @@ const styles = StyleSheet.create({
     color: '#dddddd',
     fontSize: 14,
     lineHeight: 20,
+  },
+
+  busca: {
+    backgroundColor: '#333333',
+    color: '#ffffff',
+    fontSize: 16,
+    margin: 15,
+    padding: 10,
+    borderRadius: 5,
   },
 
   categoria: {

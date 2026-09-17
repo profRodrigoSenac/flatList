@@ -1,5 +1,5 @@
 export  default function DadosdoFilme(){
-
+  
           const categorias = [
             {
               id: '1',
