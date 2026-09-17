@@ -28,28 +28,6 @@ export default function Filme() {
 
   const filme = filmeEncontrado;
 
-  if (!filme) {
-    return (
-      <>
-        <Stack.Screen
-          options={{
-            title: 'Filme não encontrado',
-            headerStyle: { backgroundColor: '#0F172A' },
-            headerTintColor: '#FFFFFF',
-          }}
-        />
-        <View style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}>
-          <Text style={{ color: '#CBD5E1', fontSize: 16 }}>Filme não encontrado.</Text>
-          <TouchableOpacity style={{ backgroundColor: '#1E293B', padding: 12, borderRadius: 10, alignItems: 'center', margin: 20 }} onPress={() => router.push("/")}>
-            <Text style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: 15 }}>Voltar</Text>
-          </TouchableOpacity>
-        </View>
-
-
-      </>
-    );
-  }
-
   return (
     <>
       <Stack.Screen
