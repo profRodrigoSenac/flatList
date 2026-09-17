@@ -10,6 +10,7 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams, Stack, router } from 'expo-router';
 import DadosDosFilmes from '../DadosDosFilmes';
+import InputBusca from '../inputBusca';
 
 
 // Dados de exemplo padrão (caso ainda não venham por props ou rota)
@@ -38,6 +39,7 @@ export default function Filme() {
         }}
       />
       <ScrollView style={styles.container} contentContainerStyle={styles.scrollContent}>
+        <InputBusca></InputBusca>
         <View style={styles.innerContainer}>
           {/* Banner / Poster do Filme */}
           <View style={styles.posterContainer}>
