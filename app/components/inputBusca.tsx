@@ -1,46 +1,41 @@
 import React, { useState } from "react";
-import {    View,    TextInput,    TouchableOpacity,    StyleSheet,    Keyboard,} from "react-native";
+import {    View,    TextInput,    TouchableOpacity,    StyleSheet,    Keyboard, Text} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 
-interface InputBuscaProps {
-    placeholder?: string;
-    onSearch?: (query: string) => void;
-}
 
 export default function InputBusca({
-    placeholder = "Buscar filmes...",
-    onSearch,
-}: InputBuscaProps = {}) {
+    placeholder = "Buscar filmes..."
+}) {
+
+
     const [texto, setTexto] = useState("");
 
-    const handleBuscar = () => {
+    const Buscar = () => {
         const termo = texto.trim();
         if (!termo) return;
 
         Keyboard.dismiss();
 
-        if (onSearch) {
-            onSearch(termo);
-        } else {
-            router.push({
-                pathname: "/components/busca/[query]",
-                params: { query: termo },
-            } as any);
-        }
+        router.push({
+            pathname: "/components/busca/"+termo,
+            params: { query: termo },
+        } as any);
+        
     };
 
     return (
         <View style={styles.container}>
+                        
             <View style={styles.inputWrapper}>
                 <TextInput
                     style={styles.input}
                     placeholder={placeholder}
-                    placeholderTextColor="#94A3B8"
+                    placeholderTextColor="#878485"
                     value={texto}
                     onChangeText={setTexto}
                     returnKeyType="search"
-                    onSubmitEditing={handleBuscar}
+                    onSubmitEditing={Buscar}
                     autoCapitalize="none"
                     autoCorrect={false}
                 />
@@ -58,7 +53,7 @@ export default function InputBusca({
 
             <TouchableOpacity
                 style={styles.botaoBusca}
-                onPress={handleBuscar}
+                onPress={Buscar}
                 activeOpacity={0.8}
             >
                 <Ionicons name="search" size={20} color="#FFFFFF" />
@@ -68,6 +63,7 @@ export default function InputBusca({
 }
 
 const styles = StyleSheet.create({
+
     container: {
         flexDirection: "row",
         alignItems: "center",
