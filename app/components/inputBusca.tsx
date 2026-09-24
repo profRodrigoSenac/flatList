@@ -1,58 +1,104 @@
-import {View, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
+import { router } from 'expo-router';
+import { useState } from 'react';
+import {View, StyleSheet, TextInput, Keyboard, TouchableOpacity} from 'react-native';
+import { Ionicons } from "@expo/vector-icons";
 
 export default function Busca() {
+ 
+    const [texto, setTexto] = useState("");
+
+    const Buscar = () => {
+        const termo = texto.trim();
+        if (!termo) return;
+
+        Keyboard.dismiss();
+
+        router.push({
+            pathname: "/components/busca/"+termo,
+            params: { query: termo },
+        } as any);
+      }
+
     return (
 
-      <View >
+      <View style={styles.pesq} >
 
+        <View style={styles.inpt}>
          <TextInput style={styles.busca}
-              placeholder='Busca...'
-              /*value={texto} query necessario*/
-             /* onChangeText={setTexto} */
+              placeholder='Pesquisar...'
+              placeholderTextColor='#FAFAFA'
+              value={texto}
+              onChangeText={setTexto} 
               returnKeyType='search'
-             /* onSubmitEditing={handleBuscar} */
+              onSubmitEditing={Buscar} 
               autoCapitalize='none'
               autoCorrect={false}
          />
-    <TouchableOpacity style={styles.found}> OK </TouchableOpacity>
+    <TouchableOpacity
+                style={styles.botaoBusca}
+                onPress={Buscar}
+                activeOpacity={0.8}
+            >
+                <Ionicons name="search" size={20} color="#FFFFFF" />
+            </TouchableOpacity>
+      {texto.length > 0 && (
+                    <TouchableOpacity
+                        style={styles.botaoLimpar}
+                        onPress={() => setTexto("")}
+                        activeOpacity={0.7}
+                    >
+                        <Ionicons name="close-circle" size={18} color="#94A3B8" />
+                    </TouchableOpacity>
+      )}
       </View>
-
-    /*  {texto.lenght > 0 && (
-        <TouchableOpacity
-        
-        >
-        </TouchableOpacity>
-      ) 
-         }*/
-
+</View>
+    
     );
-}
+  }
 
 const styles = StyleSheet.create({
 
-   busca:{
-        width: '50%',
-        height: '4.5%',
-        backgroundColor: '#FAFA',
-        marginTop: '5%',
-        marginLeft: '10%',
-        borderRadius: '7%',
-        borderWidth: 3,
-        borderColor: '#FAFAFAFA',
-        fontSize: 20,
-        alignSelf: 'auto',
-        display: 'flex'
+
+  pesq:{
+        flexDirection: "row",
+        alignItems: "center",
+        paddingHorizontal: 16,
+        paddingVertical: 10,
+        gap: 10,
+        width: "100%",
+  },
+
+   inpt:{
+        flex: 1,
+        flexDirection: "row",
+        alignItems: "center",
+        backgroundColor: "#1E293B",
+        borderRadius: 10,
+        paddingHorizontal: 12,
+        borderWidth: 1,
+        borderColor: "#334155",
+        height: 44,
+        color: "#F8FAFC",
+        fontSize: 15,
     },
 
-    found:{
-        width: '10%',
-        height: '3%',
-        backgroundColor: 'red',
-        borderRadius: '7%',
-        borderWidth: 3,
-        borderColor: '#FAFAFAFA',
-        fontSize: 20,
-        textAlign: 'center',
-        justifyContent: 'center',
-        },
+    busca: {
+        flex: 1,
+        height: 44,
+        color: "#F8FAFC",
+        fontSize: 15,
+    },
+
+    botaoLimpar: {
+        padding: 7,
+    },
+
+    botaoBusca: {
+        backgroundColor: "#E50914",
+        width: 50,
+        height: 50,
+        borderRadius: 10,
+        justifyContent: "center",
+        alignItems: "center",
+    },
 });

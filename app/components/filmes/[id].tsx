@@ -26,6 +26,7 @@ console.log('Filme encontrado:', filmeEncontrado);
             headerTintColor: '#FAFAFA',
             }}
             />
+
          <View style={styles.bigwach}>
 
             <View style={styles.boximgFilm}>
@@ -42,19 +43,10 @@ console.log('Filme encontrado:', filmeEncontrado);
                 <Text style={styles.textfilm}>Lançamento:  {filmeEncontrado?.ano} 
                 <Text style={styles.duration}>  {filmeEncontrado?.duracao}   </Text>
                 <Text style={styles.age}>  {filmeEncontrado?.age} </Text></Text>
-
-
-
-                 <TextInput style={styles.busca}
-                     placeholder='Busca...'
-                />
-
-                <TouchableOpacity style={styles.found}> OK </TouchableOpacity>
-            
                 
 
         <View style={styles.bots}>
-            <Link href={'/(tabs)/flat'}>
+            <Link href={'/'}>
                 <TouchableOpacity style={styles.startFilm}> Assistir </TouchableOpacity>
 
                 <TouchableOpacity style={styles.backsee}> + Lista de filmes </TouchableOpacity>

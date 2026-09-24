@@ -7,7 +7,7 @@ export default function Busca() {
     console.log("query recebido:", query);
 
     return(
-        <View>
+        <View style={styles.container}>
             <Stack.Screen
             options={{
                 title: query,
@@ -20,9 +20,19 @@ export default function Busca() {
         </View>
     )
 
-
-
-
 }
+const styles = StyleSheet.create({
 
-
+       container: {
+        flex: 1,
+        backgroundColor: "#000000",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: 16,
+    },
+    texto: {
+        color: "#FFFFFF",
+        fontSize: 18,
+        fontWeight: "600",
+    },
+});
